@@ -17,6 +17,7 @@ app.use(bodyparser.urlencoded({extended: true}));
 app.get('/api/productos', db.getProductos)
 app.post('/api/producto', db.createProducto)
 app.get('/api/producto/:barcode', db.getProductoBybarcode)
+app.delete('/api/producto/:id', db.deleteProducto)
 
 const PORT = process.env.PORT || 9000;
 const httpServer = app.listen(PORT, () => {
