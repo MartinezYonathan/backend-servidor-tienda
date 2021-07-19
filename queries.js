@@ -48,24 +48,18 @@ const getProductos = (request, response) => {
   })
 }
 
-
-
-
-
-
-
 const updateProducto = (request, response) => {
   const id = parseInt(request.params.id)
-  const { name, email } = request.body
+  const { nombre, descripcion, tamanio, precio, inventario } = request.body
 
   pool.query(
-    'UPDATE users SET name = $1, email = $2 WHERE id = $3',
-    [name, email, id],
+    'UPDATE producto SET nombre = $1, descripcion = $2, tamanio = $3, precio = $4, inventario = $5 WHERE id = $6',
+    [nombre, descripcion, tamanio, precio, inventario, id],
     (error, results) => {
       if (error) {
         throw error
       }
-      response.status(200).send(`User modified with ID: ${id}`)
+      response.status(200).send(`producto modified with ID: ${id}`)
     }
   )
 }
