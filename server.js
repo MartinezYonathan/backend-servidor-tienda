@@ -21,7 +21,7 @@ app.delete('/api/producto/:id', db.deleteProducto)
 app.put('/api/producto/:id', db.updateProducto)
 
 app.post('/api/producto/update', db.createProductoUpdate)
-
+app.get('/api/productos/update', db.getProductosUpdate)
 
 const PORT = process.env.PORT || 9000;
 const httpServer = app.listen(PORT, () => {

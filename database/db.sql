@@ -25,7 +25,10 @@ CREATE TABLE IF NOT EXISTS producto_update
 );
 
 
-
+SELECT producto.barcode , producto_update.precio, producto_update.precio_update, producto.nombre
+FROM producto
+INNER JOIN producto_update
+ON producto.id=producto_update.id_producto;
 
 ALTER TABLE public.users_room_llamada
     OWNER to jhlqfjaaffpmon;

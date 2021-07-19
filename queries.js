@@ -27,6 +27,15 @@ const createProductoUpdate = (request, response) => {
   })
 }
 
+const getProductosUpdate = (request, response) => {
+  pool.query('SELECT producto.barcode, producto_update.precio, producto_update.precio_update, producto.nombre FROM producto INNER JOIN producto_update ON producto.id=producto_update.id_producto;', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
 const createProducto = (request, response) => {
   const { nombre, descripcion, tamanio, precio, barcode, inventario } = request.body
 
@@ -90,6 +99,7 @@ const deleteProducto = (request, response) => {
 
 module.exports = {
     createProductoUpdate,
+    getProductosUpdate,
     createProducto,
     getProductoBybarcode,
     getProductos,
