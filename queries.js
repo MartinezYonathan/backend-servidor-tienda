@@ -16,6 +16,17 @@ process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 pool.connect();
 
 
+const createProductoUpdate = (request, response) => {
+  const { id_producto, precio, precio_update } = request.body
+
+  pool.query('INSERT INTO producto_update (id_producto, precio, precio_update, date_create) VALUES ($1, $2, $3, NOW())', [id_producto, precio, precio_update], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(201).send(`se agregado una actualizacion`)
+  })
+}
+
 const createProducto = (request, response) => {
   const { nombre, descripcion, tamanio, precio, barcode, inventario } = request.body
 
@@ -78,6 +89,7 @@ const deleteProducto = (request, response) => {
 
 
 module.exports = {
+    createProductoUpdate,
     createProducto,
     getProductoBybarcode,
     getProductos,

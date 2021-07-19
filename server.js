@@ -20,6 +20,9 @@ app.get('/api/producto/:barcode', db.getProductoBybarcode)
 app.delete('/api/producto/:id', db.deleteProducto)
 app.put('/api/producto/:id', db.updateProducto)
 
+app.post('/api/producto/update', db.createProductoUpdate)
+
+
 const PORT = process.env.PORT || 9000;
 const httpServer = app.listen(PORT, () => {
     console.log("HTTP Server running at listening on port " + httpServer.address().port);
